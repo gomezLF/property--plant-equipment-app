@@ -15,8 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewAssetMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Pane prefHeight="70.0" prefWidth="1000.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER">
          <children>
@@ -37,7 +36,7 @@
    <center>
       <HBox prefHeight="480.0" prefWidth="840.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox fillWidth="false" spacing="30.0">
+            <VBox fx:id="leftForm_VBox" fillWidth="false" spacing="30.0">
                <children>
                   <VBox spacing="5.0">
                      <children>
@@ -60,10 +59,24 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <JFXComboBox fx:id="category_comboBox" prefHeight="25.0" prefWidth="200.0" promptText="Seleccione una Categoría" />
+                        <JFXComboBox fx:id="category_comboBox" onAction="#comboBoxValueClicked" prefHeight="25.0" prefWidth="200.0" promptText="Seleccione una Categoría" />
                      </children>
                   </VBox>
-                  <VBox spacing="5.0">
+                  <VBox fx:id="otherCategory_VBox" spacing="5.0">
+                     <children>
+                        <Label text="Otra Categoría*" textFill="#b6b6bc">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="otherCategory_textField" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="usefulLife_VBox" spacing="5.0">
                      <children>
                         <Label text="Vida Util*" textFill="#b6b6bc">
                            <font>
@@ -94,20 +107,6 @@
                            </font>
                         </Label>
                         <JFXDatePicker fx:id="registrationDate_TextField" defaultColor="#4059a9" editable="false" prefHeight="22.0" prefWidth="180.0" style="-fx-border-color: black;" />
-                     </children>
-                  </VBox>
-                  <VBox fx:id="otherCategory_VBox" spacing="5.0">
-                     <children>
-                        <Label text="Otra Categoría*" textFill="#b6b6bc">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <JFXTextField fx:id="otherCategory_textField" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </JFXTextField>
                      </children>
                   </VBox>
                </children>
