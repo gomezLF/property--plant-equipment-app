@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Collections;
+
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
@@ -9,8 +11,11 @@ import customException.EmptyFieldException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import model.PPE;
 
 public class NewAssetMenuController {
+	
+	private PPE PPE;
 	
     @FXML
     private VBox leftForm_VBox;
@@ -45,18 +50,12 @@ public class NewAssetMenuController {
     
     @FXML
     void initialize() {
+    	PPE = new PPE();
+    	
     	otherCategory_VBox.setDisable(true);
     	usefulLife_VBox.setDisable(true);
-    	
-        category_comboBox.getItems().add("Terreno");
-        category_comboBox.getItems().add("Edificio");
-        category_comboBox.getItems().add("Maquinaria y Equipo");
-        category_comboBox.getItems().add("Equipo de Computo");
-        category_comboBox.getItems().add("Equipo de Comunicación");
-        category_comboBox.getItems().add("Vehículos");
-        category_comboBox.getItems().add("Muebles");
-        category_comboBox.getItems().add("Otro");
     }
+    
     
     
     @FXML
@@ -78,7 +77,8 @@ public class NewAssetMenuController {
     			validateField(usefulLife_textField);
     		}
     		
-    		
+    		cleanFieldsClicked();
+    		updateCategories();
     		
     	}catch (EmptyFieldException e) {
 			e.message();
@@ -127,6 +127,15 @@ public class NewAssetMenuController {
     			usefulLifeMedition_textField.setText("Años");
     		}
     	}
+    }
+    
+    
+    
+    private void updateCategories() {
+    	category_comboBox.getItems().clear();
+    	
+    	category_comboBox.getItems().addAll(Collections.list(PPE.getAssets().keys()));
+    	category_comboBox.getItems().add("Otro");
     }
     
     private void disableOptionalFields() {
