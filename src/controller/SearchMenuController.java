@@ -13,7 +13,7 @@ import model.Asset;
 import model.PPE;
 
 
-public class DeregisterMenuController {
+public class SearchMenuController {
 	
 	private PPE PPE;
 	
@@ -25,7 +25,7 @@ public class DeregisterMenuController {
     
     @FXML
     private JFXDatePicker registrationDate_TextField;
-
+    
     @FXML
     private JFXTreeTableView<Asset> data_treeTableView;
     

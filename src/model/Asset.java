@@ -2,7 +2,9 @@ package model;
 
 import java.time.LocalDate;
 
-public abstract class Asset {
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+
+public abstract class Asset extends RecursiveTreeObject<Asset>{
 	
 	protected String name;
 	protected double value;
