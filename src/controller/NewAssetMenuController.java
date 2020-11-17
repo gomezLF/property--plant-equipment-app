@@ -132,7 +132,7 @@ public class NewAssetMenuController {
     			usefulLifeMedition_textField.setText("");
     			
     		}else if(category.equals("Maquinaria y Equipo")) {
-    			usefulLifeMedition_textField.setText("unidades de producción");
+    			usefulLifeMedition_textField.setText("Horas Maquina");
     			
     		}else if(category.equals("Vehículos")) {
     			usefulLifeMedition_textField.setText("kilometros");

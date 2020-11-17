@@ -43,8 +43,19 @@ public class MainMenuController {
 
     @FXML
     void deregisterAssetClicked() {
-    	Pane pane = new Pane();
-    	mainMenu_BorderPane.setCenter(pane);
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/SearchMenu.fxml"));
+    		
+    		DeregisterMenuController deregisterMenuController = new DeregisterMenuController();
+    		deregisterMenuController.setPPE(this.PPE);
+    		
+    		loader.setController(deregisterMenuController);
+            Parent root = loader.load();
+            mainMenu_BorderPane.setCenter(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML
