@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXTextField;
 import customException.EmptyFieldException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import model.PPE;
 
@@ -22,6 +24,12 @@ public class NewAssetMenuController {
 	
     @FXML
     private JFXTextField name_textField;
+    
+    @FXML
+    private JFXTextField value_textField;
+    
+    @FXML
+    private JFXTextField amount_textField;
 
     @FXML
     private JFXComboBox<String> category_comboBox;
@@ -50,7 +58,7 @@ public class NewAssetMenuController {
     
     @FXML
     void initialize() {
-    	PPE = new PPE();
+    	updateCategories();
     	
     	otherCategory_VBox.setDisable(true);
     	usefulLife_VBox.setDisable(true);
@@ -63,18 +71,22 @@ public class NewAssetMenuController {
     	try {
     		
     		validateField(name_textField);
+    		validateField(value_textField);
+    		validateField(amount_textField);
     		validateField(category_comboBox);
     		validateField(registrationDate_TextField);
     		
     		if(category_comboBox.getValue().equals("Terreno")) {
-    			
+    			PPE.createNewAsset(name_textField.getText(), Double.parseDouble(value_textField.getText()), category_comboBox.getValue(), registrationDate_TextField.getValue(), description_textArea.getText(), Integer.parseInt(amount_textField.getText()));
     			
     		}else if(!category_comboBox.getValue().equals("Otro") && !category_comboBox.getValue().equals("Terreno")) {
     			validateField(usefulLife_textField);
+    			PPE.createNewAsset(name_textField.getText(), Double.parseDouble(value_textField.getText()), category_comboBox.getValue(), registrationDate_TextField.getValue(), Double.parseDouble(usefulLife_textField.getText()), usefulLifeMedition_textField.getText(), description_textArea.getText(), false, Integer.parseInt(amount_textField.getText()));
     			
     		}else {
     			validateField(otherCategory_textField);
     			validateField(usefulLife_textField);
+    			PPE.createNewAsset(name_textField.getText(), Double.parseDouble(value_textField.getText()), otherCategory_textField.getText(), registrationDate_TextField.getValue(), Double.parseDouble(usefulLife_textField.getText()), usefulLifeMedition_textField.getText(), description_textArea.getText(), true, Integer.parseInt(amount_textField.getText()));
     		}
     		
     		cleanFieldsClicked();
@@ -82,12 +94,18 @@ public class NewAssetMenuController {
     		
     	}catch (EmptyFieldException e) {
 			e.message();
+		}catch (NumberFormatException e) {
+			Alert alert = new Alert(Alert.AlertType.WARNING, "En los campos en que se deben de ingresar numeros, \n" + "verificar que no hallan carácteres diferentes de números", ButtonType.CLOSE);
+	        alert.setHeaderText(null);
+	        alert.show();
 		}
     }
 
     @FXML
     void cleanFieldsClicked() {
 		name_textField.setText("");
+		value_textField.setText("");
+		amount_textField.setText("");
 		category_comboBox.setValue(null);
 		otherCategory_textField.setText("");
 		usefulLife_textField.setText("");
@@ -129,7 +147,9 @@ public class NewAssetMenuController {
     	}
     }
     
-    
+    public void setPPE(PPE PPE) {
+    	this.PPE = PPE;
+    }
     
     private void updateCategories() {
     	category_comboBox.getItems().clear();

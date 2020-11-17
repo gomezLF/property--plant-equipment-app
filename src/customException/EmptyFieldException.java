@@ -6,12 +6,12 @@ import javafx.scene.control.ButtonType;
 public class EmptyFieldException extends Exception{
 	
 	public EmptyFieldException() {
-        super("Para añadir un nuevo activo debe llenar todos los campos necesarios");
+        super("Para añadir un nuevo activo \n" + "debe llenar todos los campos necesarios");
     }
 
     public void message(){
-        Alert alert = new Alert(Alert.AlertType.WARNING, "", ButtonType.CLOSE);
-        alert.setHeaderText(super.getMessage());
+        Alert alert = new Alert(Alert.AlertType.WARNING, super.getMessage(), ButtonType.CLOSE);
+        alert.setHeaderText(null);
         alert.show();
     }
 }

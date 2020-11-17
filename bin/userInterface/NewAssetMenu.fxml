@@ -34,7 +34,7 @@
       <Pane prefHeight="427.0" prefWidth="80.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <HBox prefHeight="480.0" prefWidth="840.0" spacing="30.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="480.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
             <VBox fx:id="leftForm_VBox" fillWidth="false" spacing="30.0">
                <children>
@@ -50,6 +50,29 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Precio y Cantidad*" textFill="#b6b6bc">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox spacing="5.0">
+                           <children>
+                              <JFXTextField fx:id="value_textField" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="amount_textField" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                   <VBox layoutX="10.0" layoutY="184.0">
@@ -99,6 +122,17 @@
                         </HBox>
                      </children>
                   </VBox>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <VBox prefHeight="387.0" prefWidth="431.0" spacing="30.0">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <children>
                   <VBox>
                      <children>
                         <Label text="Fecha de Regsitro*" textFill="#b6b6bc">
@@ -109,17 +143,6 @@
                         <JFXDatePicker fx:id="registrationDate_TextField" defaultColor="#4059a9" editable="false" prefHeight="22.0" prefWidth="180.0" style="-fx-border-color: black;" />
                      </children>
                   </VBox>
-               </children>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </VBox>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <VBox prefHeight="387.0" prefWidth="431.0">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-               <children>
                   <VBox spacing="5.0">
                      <children>
                         <Label text="Descripción" textFill="#b6b6bc">
