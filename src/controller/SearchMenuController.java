@@ -4,11 +4,16 @@ import java.util.Collections;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import model.Asset;
 import model.PPE;
 
@@ -55,6 +60,7 @@ public class SearchMenuController {
     }
     
     private void createTableTreeColumns() {
+    	JFXTreeTableColumn<Asset, String> name = new JFXTreeTableColumn<Asset, String>("Nombre");
     	
     }
 }

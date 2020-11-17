@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import javafx.beans.property.StringProperty;
+
 public abstract class Asset extends RecursiveTreeObject<Asset>{
 	
 	protected String name;

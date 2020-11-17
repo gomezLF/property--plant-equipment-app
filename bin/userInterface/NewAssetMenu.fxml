@@ -54,7 +54,7 @@
                   </VBox>
                   <VBox spacing="5.0">
                      <children>
-                        <Label text="Precio y Cantidad*" textFill="#b6b6bc">
+                        <Label text="Costo y Cantidad*" textFill="#b6b6bc">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
