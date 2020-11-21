@@ -57,7 +57,7 @@ public class SearchMenuController {
     
     private void updateCategories() {
     	category_comboBox.getItems().clear();
-    	category_comboBox.getItems().addAll(Collections.list(PPE.getAssets().keys()));
+    	category_comboBox.getItems().addAll(Collections.list(PPE.getAssetsActive().keys()));
     }
     
     private void createTableTreeColumns() {

@@ -71,7 +71,7 @@ public class DeregisterMenuController {
     
     private void updateCategories() {
     	category_comboBox.getItems().clear();
-    	category_comboBox.getItems().addAll(Collections.list(PPE.getAssets().keys()));
+    	category_comboBox.getItems().addAll(Collections.list(PPE.getAssetsActive().keys()));
     }
     
 	private void createTableTreeColumns() {
@@ -86,7 +86,7 @@ public class DeregisterMenuController {
 			PPE.checkAvailableAssets();
 			
 			data_TableView.getItems().clear();
-			Collection<Asset> data = FXCollections.observableList(PPE.getAssets().get(category_comboBox.getValue()));
+			Collection<Asset> data = FXCollections.observableList(PPE.getAssetsActive().get(category_comboBox.getValue()));
 			System.out.println(data);
 			data_TableView.getItems().addAll(data);
 			
