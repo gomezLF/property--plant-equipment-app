@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.layout.VBox;
@@ -32,7 +33,7 @@ public class SearchMenuController {
     private JFXDatePicker registrationDate_TextField;
     
     @FXML
-    private JFXTreeTableView<Asset> data_treeTableView;
+    private TableView<Asset> data_treeTableView;
     
     
     
@@ -60,7 +61,6 @@ public class SearchMenuController {
     }
     
     private void createTableTreeColumns() {
-    	JFXTreeTableColumn<Asset, String> name = new JFXTreeTableColumn<Asset, String>("Nombre");
     	
     }
 }

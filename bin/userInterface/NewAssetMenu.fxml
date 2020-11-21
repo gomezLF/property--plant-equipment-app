@@ -75,6 +75,20 @@
                         </HBox>
                      </children>
                   </VBox>
+                  <VBox fx:id="residualValue_VBox" layoutX="10.0" layoutY="10.0" spacing="5.0">
+                     <children>
+                        <Label text="Valor residual" textFill="#b6b6bc">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="residualValue_textBox" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </VBox>
                   <VBox layoutX="10.0" layoutY="184.0">
                      <children>
                         <Label text="Categoria*" textFill="#b6b6bc">
@@ -99,6 +113,17 @@
                         </JFXTextField>
                      </children>
                   </VBox>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <VBox prefHeight="387.0" prefWidth="431.0" spacing="30.0">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <children>
                   <VBox fx:id="usefulLife_VBox" spacing="5.0">
                      <children>
                         <Label text="Vida Util*" textFill="#b6b6bc">
@@ -122,17 +147,6 @@
                         </HBox>
                      </children>
                   </VBox>
-               </children>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </VBox>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <VBox prefHeight="387.0" prefWidth="431.0" spacing="30.0">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-               <children>
                   <VBox>
                      <children>
                         <Label text="Fecha de Regsitro*" textFill="#b6b6bc">

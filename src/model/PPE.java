@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import customException.NoDataRegisteredException;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class PPE {
 	
 	Hashtable<String, List<Asset>> activeAssets;
@@ -34,7 +40,11 @@ public class PPE {
 		return removedAssets;
 	}
 	
-	
+	public void checkAvailableAssets() throws NoDataRegisteredException{
+		if(activeAssets.isEmpty()) {
+			throw new NoDataRegisteredException();
+		}
+	}
 	
 	private void addNewCategory(String category) {
 		activeAssets.put(category, new ArrayList<Asset>());
@@ -42,48 +52,22 @@ public class PPE {
 	
 	
 	private void addNewAsset(String name, double value, String category, LocalDate registrationDate, String description) {
-		Asset terrain = new Terrain(name, value, category, registrationDate, description);
+		Asset terrain = new NonDepreciableAsset(name, value, category, registrationDate, description);
 		activeAssets.get(category).add(terrain);
+		
+		System.out.println(activeAssets.get(category).size());
+		System.out.println(activeAssets.get(category));
 	}
 	
-	private void addNewAsset(String name, double value, String category, LocalDate registrationDate, double usefulLife, String usefulLifeMedition, String description, boolean otherCategory) {
-		Asset asset = null;
-		
-		if(otherCategory) {
-			asset = new OtherAsset(name, value, category, registrationDate, description, usefulLife, usefulLifeMedition);
-			
-		}else {
-			switch (category) {
-				case "Terreno":
-					asset = new Terrain(name, value, category, registrationDate, description);
-					break;
-		
-				case "Edificio":
-					asset = new Building(name, value, category, registrationDate, description, usefulLife, usefulLifeMedition);
-					break;
-					
-				case "Maquinaria y Equipo":
-					asset = new MachineryEquipment(name, value, category, registrationDate, description, usefulLife, usefulLifeMedition);
-					break;
-		
-				case "Equipo de Computo":
-					asset = new ComputerEquipment(name, value, category, registrationDate, description, usefulLife, usefulLifeMedition);
-					break;
-				case "Equipo de Comunicación":
-					asset = new CommunicationEquipment(name, value, category, registrationDate, description, usefulLife, usefulLifeMedition);
-					break;
-					
-				case "Vehículos":
-					asset = new Vehicle(name, value, category, registrationDate, description, usefulLife, usefulLifeMedition);
-					break;
-		
-				case "Muebles":
-					asset = new Furniture(name, value, category, registrationDate, description, usefulLife, usefulLifeMedition);
-					break;
-				}
-		}
+	private void addNewAsset(String name, double value, String category, LocalDate registrationDate, double usefulLife, String usefulLifeMedition, String description) {
+		Asset asset = new DepreciableAsset(name, value, category, registrationDate, description, usefulLife, usefulLifeMedition);
 		activeAssets.get(category).add(asset);
+		
+		System.out.println(activeAssets.get(category).size());
+		System.out.println(activeAssets.get(category));
+		
 	}
+	
 	
 	
 	public void createNewAsset(String name, double value, String category, LocalDate registrationDate, String description, int n) {
@@ -93,12 +77,12 @@ public class PPE {
 	}
 	
 	public void createNewAsset(String name, double value, String category, LocalDate registrationDate, double usefulLife, String usefulLifeMedition, String description, boolean otherCategory, int n) {
+		if(otherCategory) {
+			addNewCategory(category);
+		}
+		
 		for (int i = 0; i < n; i++) {
-			if(otherCategory) {
-				addNewCategory(category);
-			}
-			
-			addNewAsset(name, value, category, registrationDate, usefulLife, usefulLifeMedition, description, otherCategory);
+			addNewAsset(name, value, category, registrationDate, usefulLife, usefulLifeMedition, description);
 		}
 	}
 }

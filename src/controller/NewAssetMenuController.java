@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Collections;
 
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
@@ -30,6 +31,18 @@ public class NewAssetMenuController {
     
     @FXML
     private JFXTextField amount_textField;
+    
+    @FXML
+    private JFXCheckBox depreciableAsset_checkBox;
+
+    @FXML
+    private JFXCheckBox nonDepreciableAsset_checkBox;
+    
+    @FXML
+    private VBox residualValue_VBox;
+
+    @FXML
+    private JFXTextField residualValue_textBox;
 
     @FXML
     private JFXComboBox<String> category_comboBox;
@@ -114,6 +127,16 @@ public class NewAssetMenuController {
 		description_textArea.setText("");
 		
 		disableOptionalFields();
+    }
+    
+    @FXML
+    void depreciableAssetClicked(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void nonDepreciableAssetClicked(ActionEvent event) {
+
     }
     
     @FXML

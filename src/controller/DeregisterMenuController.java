@@ -1,16 +1,19 @@
 package controller;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Collections;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
 
+import customException.NoDataRegisteredException;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import model.Asset;
 import model.PPE;
@@ -30,7 +33,19 @@ public class DeregisterMenuController {
     private JFXDatePicker registrationDate_TextField;
 
     @FXML
-    private JFXTreeTableView<Asset> data_treeTableView;
+    private TableView<Asset> data_TableView;
+    
+    @FXML
+    private TableColumn<Asset, String> nameColum;
+
+    @FXML
+    private TableColumn<Asset, Double> valueColum;
+
+    @FXML
+    private TableColumn<Asset, String> categoryColum;
+
+    @FXML
+    private TableColumn<Asset, LocalDate> registrationDatecolumn;
     
     
     
@@ -38,6 +53,7 @@ public class DeregisterMenuController {
     void initialize() {
     	updateCategories();
     	registrationDate_VBox.setDisable(true);
+    	createTableTreeColumns();
     }
     
     
@@ -46,6 +62,7 @@ public class DeregisterMenuController {
     void comboBoxValueClicked(ActionEvent event) {
     	registrationDate_VBox.setDisable(false);
     	createTableTreeColumns();
+    	addDataToTable();
     }
     
     public void setPPE(PPE PPE) {
@@ -57,16 +74,24 @@ public class DeregisterMenuController {
     	category_comboBox.getItems().addAll(Collections.list(PPE.getAssets().keys()));
     }
     
-    @SuppressWarnings("unchecked")
 	private void createTableTreeColumns() {
-    	data_treeTableView.getColumns().clear();
-    	
-    	JFXTreeTableColumn<Asset, String> nameColum = new JFXTreeTableColumn<>("Nombre");
-    	JFXTreeTableColumn<Asset, Double> valueColum = new JFXTreeTableColumn<>("Costo");
-    	JFXTreeTableColumn<Asset, String> categoryColum = new JFXTreeTableColumn<>("Categoría");
-    	JFXTreeTableColumn<Asset, LocalDate> registrationDatecolumn = new JFXTreeTableColumn<>("Fecha de Registro");
-    	
-    	data_treeTableView.getColumns().addAll(nameColum, valueColum, categoryColum, registrationDatecolumn);
-    	
+    	nameColum.setCellValueFactory(new PropertyValueFactory<Asset, String>("name"));
+    	valueColum.setCellValueFactory(new PropertyValueFactory<Asset, Double>("value"));
+    	categoryColum.setCellValueFactory(new PropertyValueFactory<Asset, String>("category"));
+    	registrationDatecolumn.setCellValueFactory(new PropertyValueFactory<Asset, LocalDate>("registrationDate"));
     }
+	
+	private void addDataToTable() {
+		try {
+			PPE.checkAvailableAssets();
+			
+			data_TableView.getItems().clear();
+			Collection<Asset> data = FXCollections.observableList(PPE.getAssets().get(category_comboBox.getValue()));
+			System.out.println(data);
+			data_TableView.getItems().addAll(data);
+			
+		}catch (NoDataRegisteredException e) {
+			e.message();
+		}
+	}
 }

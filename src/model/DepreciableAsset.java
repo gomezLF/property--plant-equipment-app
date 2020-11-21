@@ -4,15 +4,16 @@ import java.time.LocalDate;
 
 import customInterface.Depreciation;
 
-public class Building extends Asset implements Depreciation{
+public class DepreciableAsset extends Asset implements Depreciation{
 	
+	private double residualValue;
 	private double depreciation;
 	private double usefulLife;
 	private String usefulLifeMedition;
 	
 	
 	
-	public Building(String name, double value, String category, LocalDate registrationDate, String description, double usefulLife, String usefulLifeMedition) {
+	public DepreciableAsset(String name, double value, String category, LocalDate registrationDate, String description, double usefulLife, String usefulLifeMedition) {
 		super(name, value, category, registrationDate, description);
 		
 		this.depreciation = 0.0;
@@ -22,7 +23,9 @@ public class Building extends Asset implements Depreciation{
 
 	
 	
-	
+	public double getResidualValue() {
+		return residualValue;
+	}
 	
 	public double getDepreciation() {
 		return depreciation;
@@ -43,18 +46,26 @@ public class Building extends Asset implements Depreciation{
 	public String getUsefulLifeMedition() {
 		return usefulLifeMedition;
 	}
+	
+	public DepreciableAsset(String name, double value, String category, LocalDate registrationDate, String description) {
+		super(name, value, category, registrationDate, description);
+	}
+
 
 
 
 	@Override
 	public void calculateDepreciation() {
-		
+		// TODO Auto-generated method stub
 		
 	}
 
+
+
+
 	@Override
 	public void deregisterForDepreciation() {
-		
+		// TODO Auto-generated method stub
 		
 	}
 
