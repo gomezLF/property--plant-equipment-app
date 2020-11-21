@@ -51,7 +51,7 @@ public class DeregisterMenuController {
     
     @FXML
     void initialize() {
-    	updateCategories();
+    	updateDepreciableCategories();
     	registrationDate_VBox.setDisable(true);
     	createTableTreeColumns();
     }
@@ -69,9 +69,14 @@ public class DeregisterMenuController {
     	this.PPE = PPE;
     }
     
-    private void updateCategories() {
+    private void updateDepreciableCategories() {
     	category_comboBox.getItems().clear();
-    	category_comboBox.getItems().addAll(Collections.list(PPE.getAssetsActive().keys()));
+    	category_comboBox.getItems().addAll(Collections.list(PPE.getDerpeciableAssets().keys()));
+    }
+    
+    private void updateNonDepreciableCategories() {
+    	category_comboBox.getItems().clear();
+    	category_comboBox.getItems().addAll(Collections.list(PPE.getNonDepreciableAsset().keys()));
     }
     
 	private void createTableTreeColumns() {

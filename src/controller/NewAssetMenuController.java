@@ -84,7 +84,6 @@ public class NewAssetMenuController {
     @FXML
     void addAssetClicked() {
     	try {
-    		
     		validateField(name_textField);
     		validateField(value_textField);
     		validateField(amount_textField);
