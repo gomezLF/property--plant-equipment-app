@@ -22,10 +22,10 @@
                <children>
                   <HBox spacing="50.0">
                      <children>
-                        <VBox alignment="CENTER_LEFT" spacing="3.0">
+                        <VBox alignment="CENTER_LEFT" spacing="5.0">
                            <children>
-                              <JFXCheckBox fx:id="depreciableAsset_checkBox" text="Activo Depreciable" />
-                              <JFXCheckBox fx:id="nonDepreciableAsset_checkBox" text="Activo No Depreciable" />
+                              <JFXCheckBox fx:id="depreciableAsset_checkBox" onAction="#depreciableAssetClicked" text="Activo Depreciable" />
+                              <JFXCheckBox fx:id="nonDepreciableAsset_checkBox" layoutX="10.0" layoutY="10.0" onAction="#nonDepreciableAssetClicked" text="Activo No Depreciable" />
                            </children>
                         </VBox>
                         <VBox>
@@ -35,7 +35,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXComboBox fx:id="category_comboBox" onAction="#comboBoxValueClicked" prefHeight="25.0" prefWidth="200.0" promptText="Seleccione una Categoría" />
+                              <JFXComboBox fx:id="category_comboBox" onAction="#comboBoxValueClicked" prefHeight="25.0" prefWidth="215.0" promptText="Seleccione una Categoría" />
                            </children>
                         </VBox>
                      </children>
@@ -77,17 +77,9 @@
       <Pane prefWidth="10.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <Pane prefHeight="60.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="10.0" text="Buscar Activo" textFill="#6899a0">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
+      <Pane prefHeight="20.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
-      <Pane prefHeight="7.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="40.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

@@ -95,7 +95,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <JFXComboBox fx:id="category_comboBox" onAction="#comboBoxValueClicked" prefHeight="25.0" prefWidth="200.0" promptText="Seleccione una Categoría" />
+                        <JFXComboBox fx:id="category_comboBox" onAction="#comboBoxValueClicked" prefHeight="25.0" prefWidth="215.0" promptText="Seleccione una Categoría" />
                      </children>
                   </VBox>
                   <VBox fx:id="otherCategory_VBox" spacing="5.0">

@@ -71,6 +71,8 @@ public class NewAssetMenuController {
     private JFXTextArea description_textArea;
     
     
+    
+    
     @FXML
     void initialize() {
     	updateDepreciableCategories();
@@ -78,6 +80,7 @@ public class NewAssetMenuController {
     	
     	otherCategory_VBox.setDisable(true);
     }
+    
     
     
     
@@ -173,9 +176,15 @@ public class NewAssetMenuController {
     	}
     }
     
+    
+    
+    
     public void setPPE(PPE PPE) {
     	this.PPE = PPE;
     }
+    
+    
+    
     
     private void updateDepreciableCategories() {
     	category_comboBox.getItems().clear();
@@ -191,10 +200,16 @@ public class NewAssetMenuController {
     	category_comboBox.getItems().add("Otro");
     }
     
+    
+    
+    
     private void disableOptionalFields(boolean disable) {
     	usefulLife_VBox.setDisable(disable);
     	residualValue_VBox.setDisable(disable);
     }
+    
+    
+    
     
     private void validateField(Object object) throws EmptyFieldException{
     	if((object instanceof JFXTextField && ((JFXTextField) object).getText().equals("")) || (object instanceof JFXComboBox<?> && ((JFXComboBox<?>) object).getValue() == null) || (object instanceof JFXDatePicker && ((JFXDatePicker) object).getValue() == null)) {

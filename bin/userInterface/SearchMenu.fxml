@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -16,18 +18,29 @@
    <center>
       <VBox spacing="15.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="53.0" spacing="200.0">
+            <HBox alignment="CENTER" prefHeight="53.0" spacing="100.0">
                <children>
-                  <VBox>
+                  <HBox spacing="50.0">
                      <children>
-                        <Label text="Categoria*" textFill="#b6b6bc">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <JFXComboBox fx:id="category_comboBox" onAction="#comboBoxValueClicked" prefHeight="25.0" prefWidth="200.0" promptText="Seleccione una Categoría" />
+                        <VBox alignment="CENTER_LEFT" spacing="5.0">
+                           <children>
+                              <JFXCheckBox fx:id="depreciableAsset_checkBox" onAction="#depreciableAssetClicked" text="Activo Depreciable" />
+                              <JFXCheckBox fx:id="nonDepreciableAsset_checkBox" layoutX="10.0" layoutY="10.0" onAction="#nonDepreciableAssetClicked" text="Activo No Depreciable" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Label text="Categoria*" textFill="#b6b6bc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="category_comboBox" onAction="#comboBoxValueClicked" prefHeight="25.0" prefWidth="215.0" promptText="Seleccione una Categoría" />
+                           </children>
+                        </VBox>
                      </children>
-                  </VBox>
+                  </HBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
                   <VBox fx:id="registrationDate_VBox">
                      <children>
                         <Label text="Fecha de Regsitro" textFill="#b6b6bc">
@@ -64,17 +77,9 @@
       <Pane prefWidth="10.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <Pane prefHeight="60.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="10.0" text="Buscar Activo" textFill="#6899a0">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
+      <Pane prefHeight="20.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
-      <Pane prefHeight="7.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="40.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
