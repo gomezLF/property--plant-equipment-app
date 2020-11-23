@@ -66,6 +66,7 @@ public class DeregisterMenuController {
     void initialize() {
     	depreciableAssetClicked();
     	registrationDate_VBox.setDisable(true);
+    	showCategory_button.setDisable(true);
     	createTableColumns();
     }
     
@@ -74,12 +75,13 @@ public class DeregisterMenuController {
     
     @FXML
     void cleanFieldsClicked(ActionEvent event) {
-    	
+    	depreciableAssetClicked();
     }
     
     @FXML
     void showCategoryClicked(ActionEvent event) {
-
+    	showCategory_button.setDisable(true);
+    	addDataToTable(listedAssets);
     }
     
     @FXML
@@ -103,8 +105,13 @@ public class DeregisterMenuController {
     	depreciableAsset_checkBox.setSelected(true);
     	nonDepreciableAsset_checkBox.setSelected(false);
     	
+    	registrationDate_TextField.setValue(null);
+    	registrationDate_VBox.setDisable(true);
+    	
     	data_TableView.getItems().clear();
     	updateDepreciableCategories();
+    	
+    	showCategory_button.setDisable(true);
     }
 
     @FXML
@@ -112,16 +119,24 @@ public class DeregisterMenuController {
     	nonDepreciableAsset_checkBox.setSelected(true);
     	depreciableAsset_checkBox.setSelected(false);
     	
+    	registrationDate_TextField.setValue(null);
+    	registrationDate_VBox.setDisable(true);
+    	
     	data_TableView.getItems().clear();
     	updateNonDepreciableCategories();
+    	
+    	showCategory_button.setDisable(true);
     }
     
     @FXML
     void registrationDateClicked(ActionEvent event) {
-    	data_TableView.getItems().clear();
-    	
-		List<Asset> data = filterAssets();
-		data_TableView.getItems().addAll(data);
+    	if(registrationDate_TextField.getValue() != null) {
+    		data_TableView.getItems().clear();
+        	showCategory_button.setDisable(false);
+        	
+    		List<Asset> data = filterAssets();
+    		data_TableView.getItems().addAll(data);
+    	}
     }
     
     
@@ -136,7 +151,6 @@ public class DeregisterMenuController {
     
     private void updateDepreciableCategories() {
     	category_comboBox.setValue(null);
-    	registrationDate_VBox.setDisable(true);
     	
     	category_comboBox.getItems().clear();
     	
@@ -152,7 +166,6 @@ public class DeregisterMenuController {
     
     private void updateNonDepreciableCategories() {
     	category_comboBox.setValue(null);
-    	registrationDate_VBox.setDisable(true);
     	
     	category_comboBox.getItems().clear();
     	
