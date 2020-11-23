@@ -82,9 +82,9 @@
       <Pane prefHeight="20.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="40.0" spacing="80.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="40.0" spacing="25.0">
                <children>
                   <JFXButton alignment="CENTER" buttonType="RAISED" onAction="#cleanFieldsClicked" style="-fx-background-color: #00B19D;" text="Limpiar">
                      <font>
@@ -104,6 +104,14 @@
                   </JFXButton>
                </children>
             </HBox>
+            <JFXButton fx:id="showDetails_button" alignment="CENTER" buttonType="RAISED" onAction="#showDetailsClicked" style="-fx-background-color: #00B19D;" text="Mostrar Detalles">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
          </children>
       </HBox>
    </bottom>

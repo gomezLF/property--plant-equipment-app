@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -26,6 +28,7 @@ public class DeregisterMenuController {
 	private PPE PPE;
 	
 	private List<Asset> listedAssets;
+	private Asset assetSelected;
 	
     @FXML
     private JFXCheckBox depreciableAsset_checkBox;
@@ -41,6 +44,9 @@ public class DeregisterMenuController {
     
     @FXML
     private JFXButton showCategory_button;
+    
+    @FXML
+    private JFXButton showDetails_button;
     
     @FXML
     private JFXDatePicker registrationDate_TextField;
@@ -67,21 +73,28 @@ public class DeregisterMenuController {
     	depreciableAssetClicked();
     	registrationDate_VBox.setDisable(true);
     	showCategory_button.setDisable(true);
-    	createTableColumns();
+    	showDetails_button.setDisable(true);
+    	configureTable();
     }
     
     
     
     
     @FXML
-    void cleanFieldsClicked(ActionEvent event) {
+    void cleanFieldsClicked() {
     	depreciableAssetClicked();
     }
     
     @FXML
-    void showCategoryClicked(ActionEvent event) {
+    void showCategoryClicked() {
     	showCategory_button.setDisable(true);
     	addDataToTable(listedAssets);
+    }
+    
+    @FXML
+    void showDetailsClicked() {
+    	System.out.println(assetSelected.getName());
+    	showDetails_button.setDisable(true);
     }
     
     @FXML
@@ -95,8 +108,6 @@ public class DeregisterMenuController {
 			}else {
 				addDataToTable(PPE.getNonDepreciableAsset().get(category_comboBox.getValue()));
 			}
-    			
-    		
     	}
     }
     
@@ -182,11 +193,24 @@ public class DeregisterMenuController {
     
     
     
-	private void createTableColumns() {
+	private void configureTable() {
     	nameColum.setCellValueFactory(new PropertyValueFactory<Asset, String>("name"));
     	valueColum.setCellValueFactory(new PropertyValueFactory<Asset, Double>("value"));
     	categoryColum.setCellValueFactory(new PropertyValueFactory<Asset, String>("category"));
     	registrationDatecolumn.setCellValueFactory(new PropertyValueFactory<Asset, LocalDate>("registrationDate"));
+    	
+    	data_TableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Asset>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Asset> observable, Asset oldValue, Asset newValue) {
+				if(data_TableView.getSelectionModel().getSelectedItem() != null) {
+					assetSelected = data_TableView.getSelectionModel().getSelectedItem();
+					
+					showDetails_button.setDisable(false);
+				}
+			}
+    		
+		});
     }
 	
 	private void addDataToTable(List<Asset> list) {
