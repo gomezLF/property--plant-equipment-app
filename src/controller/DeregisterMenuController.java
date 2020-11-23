@@ -1,16 +1,15 @@
 package controller;
 
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Hashtable;
 import java.util.List;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 
-import customException.NoDataRegisteredException;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -24,6 +23,8 @@ import model.PPE;
 public class DeregisterMenuController {
 	
 	private PPE PPE;
+	
+	private List<Asset> listedAssets;
 	
     @FXML
     private JFXCheckBox depreciableAsset_checkBox;
@@ -71,19 +72,15 @@ public class DeregisterMenuController {
     	if(category_comboBox.getValue() != null) {
     		registrationDate_VBox.setDisable(false);
         	
-        	try {
-    			if(depreciableAsset_checkBox.isSelected()) {
-    				PPE.checkAvailableDepreciableAssets(category_comboBox.getValue());
-    				addDataToTable(PPE.getDerpeciableAssets().get(category_comboBox.getValue()));
-    				
-    			}else {
-    				PPE.checkAvailableNonDepreciableAssets(category_comboBox.getValue());
-    				addDataToTable(PPE.getNonDepreciableAsset().get(category_comboBox.getValue()));
-    			}
+        	
+			if(depreciableAsset_checkBox.isSelected()) {
+				addDataToTable(PPE.getDerpeciableAssets().get(category_comboBox.getValue()));
+				
+			}else {
+				addDataToTable(PPE.getNonDepreciableAsset().get(category_comboBox.getValue()));
+			}
     			
-    		}catch (NoDataRegisteredException e) {
-    			e.message();
-    		}
+    		
     	}
     }
     
@@ -105,6 +102,14 @@ public class DeregisterMenuController {
     	updateNonDepreciableCategories();
     }
     
+    @FXML
+    void registrationDateClicked(ActionEvent event) {
+    	data_TableView.getItems().clear();
+    	
+		List<Asset> data = filterAssets();
+		data_TableView.getItems().addAll(data);
+    }
+    
     
     
     
@@ -120,7 +125,15 @@ public class DeregisterMenuController {
     	registrationDate_VBox.setDisable(true);
     	
     	category_comboBox.getItems().clear();
-    	category_comboBox.getItems().addAll(Collections.list(PPE.getDerpeciableAssets().keys()));
+    	
+    	Hashtable<String, List<Asset>> hash = PPE.getDerpeciableAssets();
+    	List<String> list = Collections.list(hash.keys());
+    	
+    	for (int i = 0; i < hash.size(); i++) {
+			if(!hash.get(list.get(i)).isEmpty()) {
+				category_comboBox.getItems().add(list.get(i));
+			}
+		}
     }
     
     private void updateNonDepreciableCategories() {
@@ -128,7 +141,15 @@ public class DeregisterMenuController {
     	registrationDate_VBox.setDisable(true);
     	
     	category_comboBox.getItems().clear();
-    	category_comboBox.getItems().addAll(Collections.list(PPE.getNonDepreciableAsset().keys()));
+    	
+    	Hashtable<String, List<Asset>> hash = PPE.getNonDepreciableAsset();
+    	List<String> list = Collections.list(hash.keys());
+    	
+    	for (int i = 0; i < hash.size(); i++) {
+			if(!hash.get(list.get(i)).isEmpty()) {
+				category_comboBox.getItems().add(list.get(i));
+			}
+		}
     }
     
     
@@ -143,7 +164,24 @@ public class DeregisterMenuController {
 	
 	private void addDataToTable(List<Asset> list) {
 		data_TableView.getItems().clear();
-		Collection<Asset> data = FXCollections.observableList(list);
-		data_TableView.getItems().addAll(data);
+		listedAssets = list;
+		data_TableView.getItems().addAll(list);
+	}
+	
+	private List<Asset> filterAssets(){
+		List<Asset> data = new ArrayList<Asset>();
+		
+		for (Asset asset : listedAssets) {
+			
+			System.out.println("Asset= " + asset.getRegistrationDate());
+			System.out.println("Date= " + registrationDate_TextField.getValue());
+			System.out.println("");
+			
+			if(asset.getRegistrationDate().compareTo(registrationDate_TextField.getValue()) == 0) {
+				data.add(asset);
+			}
+		}
+		
+		return data;
 	}
 }

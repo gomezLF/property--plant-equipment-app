@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import customException.NoDataRegisteredException;
+import javafx.util.converter.LocalDateStringConverter;
 
 public class PPE {
 	
@@ -29,6 +30,34 @@ public class PPE {
 		nonDepreciableAssetsActive.put("Terreno", new ArrayList<Asset>());
 		nonDepreciableAssetsActive.put("Construcciones en curso", new ArrayList<Asset>());
 		nonDepreciableAssetsActive.put("Maquinaria y Equipo en montaje", new ArrayList<Asset>());
+		
+		proof();
+	}
+	
+	private void proof() {
+		LocalDate date1 = LocalDate.now();
+		LocalDate date2 = LocalDate.parse("2020-01-21");
+		LocalDate date3 = LocalDate.parse("2020-06-21");
+		LocalDate date4 = LocalDate.parse("2019-11-21");
+		
+		
+		addNewDepreciableAsset("Camisetas Marca S", 100000, "Prendas de Vestir", date1, 3, "Años", "", true, 20);
+		addNewDepreciableAsset("Camisetas Marca S", 100000, "Prendas de Vestir", date2, 3, "Años", "", false, 20);
+		addNewDepreciableAsset("Camisetas Marca S", 100000, "Prendas de Vestir", date3, 3, "Años", "", false, 20);
+		addNewDepreciableAsset("Camisetas Marca S", 100000, "Prendas de Vestir", date4, 3, "Años", "", false, 20);
+		
+		addNewDepreciableAsset("Vehiculos de Carga", 10000000, "Vehículos", date1, 20, "Años", "", false, 2);
+		addNewDepreciableAsset("Vehiculos de Carga", 10000000, "Vehículos", date2, 20, "Años", "", false, 2);
+		addNewDepreciableAsset("Vehiculos de Carga", 10000000, "Vehículos", date3, 20, "Años", "", false, 2);
+		addNewDepreciableAsset("Vehiculos de Carga", 10000000, "Vehículos", date4, 20, "Años", "", false, 2);
+		
+		addNewDepreciableAsset("Computadores Marca Dell", 2000000, "Equipo de Computo", date1, 5, "Años", "", false, 10);
+		addNewDepreciableAsset("Computadores Marca Dell", 2000000, "Equipo de Computo", date2, 5, "Años", "", false, 10);
+		addNewDepreciableAsset("Computadores Marca Dell", 2000000, "Equipo de Computo", date3, 5, "Años", "", false, 10);
+		addNewDepreciableAsset("Computadores Marca Dell", 2000000, "Equipo de Computo", date4, 5, "Años", "", false, 10);
+		
+		
+		
 	}
 	
 	
