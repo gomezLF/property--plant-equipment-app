@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -39,6 +40,9 @@ public class DeregisterMenuController {
     private VBox registrationDate_VBox;
     
     @FXML
+    private JFXButton showCategory_button;
+    
+    @FXML
     private JFXDatePicker registrationDate_TextField;
 
     @FXML
@@ -67,11 +71,21 @@ public class DeregisterMenuController {
     
     
     
+    
+    @FXML
+    void cleanFieldsClicked(ActionEvent event) {
+    	
+    }
+    
+    @FXML
+    void showCategoryClicked(ActionEvent event) {
+
+    }
+    
     @FXML
     void comboBoxValueClicked(ActionEvent event) {
     	if(category_comboBox.getValue() != null) {
     		registrationDate_VBox.setDisable(false);
-        	
         	
 			if(depreciableAsset_checkBox.isSelected()) {
 				addDataToTable(PPE.getDerpeciableAssets().get(category_comboBox.getValue()));
@@ -172,11 +186,6 @@ public class DeregisterMenuController {
 		List<Asset> data = new ArrayList<Asset>();
 		
 		for (Asset asset : listedAssets) {
-			
-			System.out.println("Asset= " + asset.getRegistrationDate());
-			System.out.println("Date= " + registrationDate_TextField.getValue());
-			System.out.println("");
-			
 			if(asset.getRegistrationDate().compareTo(registrationDate_TextField.getValue()) == 0) {
 				data.add(asset);
 			}

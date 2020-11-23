@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -80,6 +82,29 @@
       <Pane prefHeight="20.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
-      <Pane prefHeight="40.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <JFXButton alignment="CENTER" buttonType="RAISED" onAction="#cleanFieldsClicked" style="-fx-background-color: #00B19D;" text="Limpiar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="showCategory_button" alignment="CENTER" buttonType="RAISED" layoutX="78.0" layoutY="16.0" onAction="#showCategoryClicked" style="-fx-background-color: #00B19D;" text="Mostrar Categoría">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
    </bottom>
 </BorderPane>
