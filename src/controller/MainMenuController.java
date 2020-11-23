@@ -45,10 +45,11 @@ public class MainMenuController {
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/SearchMenu.fxml"));
     		
-    		DeregisterMenuController deregisterMenuController = new DeregisterMenuController();
-    		deregisterMenuController.setPPE(this.PPE);
+    		SearchMenuController searchMenuController = new SearchMenuController();
+    		searchMenuController.setPPE(this.PPE);
+    		searchMenuController.setRunDeregisterMenuController(true);
     		
-    		loader.setController(deregisterMenuController);
+    		loader.setController(searchMenuController);
             Parent root = loader.load();
             mainMenu_BorderPane.setCenter(root);
 
@@ -59,7 +60,20 @@ public class MainMenuController {
     
     @FXML
     void searchAssetClicked() {
-    	
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/userInterface/SearchMenu.fxml"));
+    		
+    		SearchMenuController searchMenuController = new SearchMenuController();
+    		searchMenuController.setPPE(this.PPE);
+    		searchMenuController.setRunDeregisterMenuController(false);
+    		
+    		loader.setController(searchMenuController);
+            Parent root = loader.load();
+            mainMenu_BorderPane.setCenter(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML
