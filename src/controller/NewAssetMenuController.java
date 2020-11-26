@@ -77,6 +77,7 @@ public class NewAssetMenuController {
     void initialize() {
     	updateDepreciableCategories();
     	depreciableAsset_checkBox.setSelected(true);
+    	usefulLifeMedition_textField.setText("Años");
     	
     	otherCategory_VBox.setDisable(true);
     }
@@ -149,6 +150,7 @@ public class NewAssetMenuController {
     void depreciableAssetClicked() {
     	depreciableAsset_checkBox.setSelected(true);
     	nonDepreciableAsset_checkBox.setSelected(false);
+    	usefulLifeMedition_textField.setText("Años");
     	
     	disableOptionalFields(false);
     	updateDepreciableCategories();
