@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import customInterface.Depreciation;
 
@@ -8,6 +9,7 @@ public class DepreciableAsset extends Asset implements Depreciation{
 	
 	private double residualValue;
 	private double depreciation;
+	private double depreciationRate;
 	private double usefulLife;
 	private String usefulLifeMedition;
 	
@@ -17,8 +19,11 @@ public class DepreciableAsset extends Asset implements Depreciation{
 		super(name, value, category, registrationDate, description);
 		
 		this.depreciation = 0.0;
+		this.depreciationRate = 0.0;
 		this.usefulLife = usefulLife;
 		this.usefulLifeMedition = usefulLifeMedition;
+		
+		calculateDepreciationRate();
 	}
 
 	
@@ -33,6 +38,10 @@ public class DepreciableAsset extends Asset implements Depreciation{
 	
 	public void setDepreciation(double depreciation) {
 		this.depreciation = depreciation;
+	}
+	
+	public double getDepreciationRate() {
+		return depreciationRate;
 	}
 
 	public double getUsefulLyfe() {
@@ -55,9 +64,10 @@ public class DepreciableAsset extends Asset implements Depreciation{
 
 
 	@Override
-	public void calculateDepreciation() {
-		// TODO Auto-generated method stub
+	public void calculateDepreciation(LocalDate toDate) {
+		long intervalMonths = ChronoUnit.MONTHS.between(registrationDate, toDate);
 		
+		depreciation = (depreciationRate * intervalMonths)/12;
 	}
 
 
@@ -65,8 +75,14 @@ public class DepreciableAsset extends Asset implements Depreciation{
 
 	@Override
 	public void deregisterForDepreciation() {
-		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	@Override
+	public void calculateDepreciationRate() {
+		depreciationRate = (value - residualValue)/usefulLife;
 	}
 
 }

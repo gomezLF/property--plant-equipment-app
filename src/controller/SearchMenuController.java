@@ -1,6 +1,7 @@
 package controller;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -94,7 +95,15 @@ public class SearchMenuController {
     
     @FXML
     void showDetailsClicked() {
-    	System.out.println(assetSelected.getName());
+    	
+    	if(runDeregisterMenuController) {
+    		
+    		
+    		
+    	}else {
+    		
+    	}
+    	
     	showDetails_button.setDisable(true);
     }
     
