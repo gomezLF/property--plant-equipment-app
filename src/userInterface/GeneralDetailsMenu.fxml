@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="248.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="assetName_label" alignment="CENTER" style="-fx-background-color: #00B19D; -fx-background-radius: 10;" text="Camisetas Talla S" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+         </children>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" spacing="150.0">
+               <children>
+                  <VBox spacing="10.0">
+                     <children>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Valor Neto" textFill="#b6b6bc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="value_textField" editable="false" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="residualValue_VBox" spacing="5.0">
+                           <children>
+                              <Label text="Valor residual" textFill="#b6b6bc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="residualValue_textBox" editable="false" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" visible="false" />
+                  <VBox spacing="10.0">
+                     <children>
+                        <VBox fx:id="usefulLife_VBox" spacing="5.0">
+                           <children>
+                              <Label text="Vida Util*" textFill="#b6b6bc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="2.0">
+                                 <children>
+                                    <JFXTextField fx:id="usefulLife_textField" editable="false" prefHeight="32.0" prefWidth="150.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="usefulLifeMedition_textField" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="category_vBox" spacing="5.0">
+                           <children>
+                              <Label text="Categoría" textFill="#b6b6bc">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="category_textBox" editable="false" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: #AADFD9; -fx-border-color: black;" unFocusColor="#aadfd9">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

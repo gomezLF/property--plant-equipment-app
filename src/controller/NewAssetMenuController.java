@@ -109,7 +109,7 @@ public class NewAssetMenuController {
     			validateField(residualValue_textBox);
     			validateField(usefulLife_textField);
     			
-    			PPE.addNewDepreciableAsset(name, value, category, registrationDate, Double.parseDouble(usefulLife_textField.getText()), usefulLifeMedition_textField.getText(), description, otherCategory, amount);
+    			PPE.addNewDepreciableAsset(name, value, Double.parseDouble(residualValue_textBox.getText()), category, registrationDate, Double.parseDouble(usefulLife_textField.getText()), usefulLifeMedition_textField.getText(), description, otherCategory, amount);
     			
     		}else {
     			PPE.addNewNonDepreciableAsset(name, value, category, registrationDate, description, otherCategory, amount);

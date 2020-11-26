@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -10,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainMenu_BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #F9FAFD;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+<BorderPane fx:id="mainMenu_BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #F9FAFD;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="550.0" prefWidth="200.0" spacing="30.0" style="-fx-background-color: #00B19D; -fx-background-radius: 5;" BorderPane.alignment="CENTER">
+      <VBox fx:id="mainPanel_vBox" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="200.0" spacing="30.0" style="-fx-background-color: #00B19D; -fx-background-radius: 5;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="TOP_CENTER" spacing="10.0">
                <children>
@@ -39,7 +40,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="25.0" layoutY="45.0" onAction="#searchAssetClicked" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: #AADFD9;" text="Buscar">
+                        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="25.0" layoutY="45.0" onAction="#searchAssetClicked" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: #AADFD9;" text="Consultar">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -72,14 +73,6 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="30.0" layoutY="10.0" onAction="#listDeregisteredAssetsClicked" prefWidth="180.0" ripplerFill="WHITE" style="-fx-background-color: #AADFD9;" text="Listar Activos Retirados">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </JFXButton>
                      </children>
                   </VBox>
                </children>
@@ -90,9 +83,10 @@
    <top>
       <VBox prefHeight="50.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="50.0" style="-fx-background-color: #FFFFFF;">
+            <HBox alignment="CENTER" prefHeight="50.0" spacing="50.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Label text="Propiedad, Panta y Equipo" textAlignment="CENTER">
+                  <JFXDatePicker fx:id="cutoffDate_datePicker" onAction="#cutoffDateClicked" />
+                  <Label text="Propiedad, Planta y Equipo" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

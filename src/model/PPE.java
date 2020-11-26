@@ -9,15 +9,19 @@ import customException.NoDataRegisteredException;
 
 public class PPE {
 	
-	Hashtable<String, List<Asset>> depreciableAssetsActive;
-	Hashtable<String, List<Asset>> nonDepreciableAssetsActive;
-	Hashtable<String, List<Asset>> removedAssets;
+	private LocalDate cutoffDate;
+	
+	private Hashtable<String, List<Asset>> depreciableAssetsActive;
+	private Hashtable<String, List<Asset>> nonDepreciableAssetsActive;
+	private Hashtable<String, List<Asset>> removedAssets;
 	
 	
-	public PPE() {
-		depreciableAssetsActive = new Hashtable<String, List<Asset>>();
-		nonDepreciableAssetsActive = new Hashtable<String, List<Asset>>();
-		removedAssets = new Hashtable<String, List<Asset>>();
+	public PPE(LocalDate cutoffDate) {
+		
+		this.cutoffDate = cutoffDate;
+		this.depreciableAssetsActive = new Hashtable<String, List<Asset>>();
+		this.nonDepreciableAssetsActive = new Hashtable<String, List<Asset>>();
+		this.removedAssets = new Hashtable<String, List<Asset>>();
 		
 		depreciableAssetsActive.put("Edificio", new ArrayList<Asset>());
 		depreciableAssetsActive.put("Maquinaria y Equipo", new ArrayList<Asset>());
@@ -27,8 +31,6 @@ public class PPE {
 		depreciableAssetsActive.put("Muebles", new ArrayList<Asset>());
 		
 		nonDepreciableAssetsActive.put("Terreno", new ArrayList<Asset>());
-		nonDepreciableAssetsActive.put("Construcciones en curso", new ArrayList<Asset>());
-		nonDepreciableAssetsActive.put("Maquinaria y Equipo en montaje", new ArrayList<Asset>());
 		
 		proof();
 	}
@@ -40,27 +42,31 @@ public class PPE {
 		LocalDate date4 = LocalDate.parse("2019-11-21");
 		
 		
-		addNewDepreciableAsset("Camisetas Marca S", 100000, "Prendas de Vestir", date1, 3, "Años", "", true, 20);
-		addNewDepreciableAsset("Camisetas Marca S", 100000, "Prendas de Vestir", date2, 3, "Años", "", false, 20);
-		addNewDepreciableAsset("Camisetas Marca S", 100000, "Prendas de Vestir", date3, 3, "Años", "", false, 20);
-		addNewDepreciableAsset("Camisetas Marca S", 100000, "Prendas de Vestir", date4, 3, "Años", "", false, 20);
+		addNewDepreciableAsset("Camisetas Talla S", 100000, 15000, "Prendas de Vestir", date1, 3, "Años", "", true, 20);
+		addNewDepreciableAsset("Camisetas Talla M", 100000, 15000, "Prendas de Vestir", date2, 3, "Años", "", false, 20);
+		addNewDepreciableAsset("Camisetas Talla L", 100000, 15000, "Prendas de Vestir", date3, 3, "Años", "", false, 20);
+		addNewDepreciableAsset("Camisetas Talla XL", 100000, 15000, "Prendas de Vestir", date4, 3, "Años", "", false, 20);
 		
-		addNewDepreciableAsset("Vehiculos de Carga", 10000000, "Vehículos", date1, 20, "Años", "", false, 2);
-		addNewDepreciableAsset("Vehiculos de Carga", 10000000, "Vehículos", date2, 20, "Años", "", false, 2);
-		addNewDepreciableAsset("Vehiculos de Carga", 10000000, "Vehículos", date3, 20, "Años", "", false, 2);
-		addNewDepreciableAsset("Vehiculos de Carga", 10000000, "Vehículos", date4, 20, "Años", "", false, 2);
+		addNewDepreciableAsset("Vehiculos de Carga", 10000000, 2500000, "Vehículos", date1, 20, "Años", "", false, 2);
+		addNewDepreciableAsset("Vehiculos de Carga", 10000000, 2500000, "Vehículos", date2, 20, "Años", "", false, 2);
+		addNewDepreciableAsset("Vehiculos de Carga", 10000000, 2500000, "Vehículos", date3, 20, "Años", "", false, 2);
+		addNewDepreciableAsset("Vehiculos de Carga", 10000000, 2500000, "Vehículos", date4, 20, "Años", "", false, 2);
 		
-		addNewDepreciableAsset("Computadores Marca Dell", 2000000, "Equipo de Computo", date1, 5, "Años", "", false, 10);
-		addNewDepreciableAsset("Computadores Marca Dell", 2000000, "Equipo de Computo", date2, 5, "Años", "", false, 10);
-		addNewDepreciableAsset("Computadores Marca Dell", 2000000, "Equipo de Computo", date3, 5, "Años", "", false, 10);
-		addNewDepreciableAsset("Computadores Marca Dell", 2000000, "Equipo de Computo", date4, 5, "Años", "", false, 10);
+		addNewDepreciableAsset("Computadores Marca Dell", 2000000, 600000, "Equipo de Computo", date1, 5, "Años", "", false, 10);
+		addNewDepreciableAsset("Computadores Marca Dell", 2000000, 600000, "Equipo de Computo", date2, 5, "Años", "", false, 10);
+		addNewDepreciableAsset("Computadores Marca Dell", 2000000, 600000, "Equipo de Computo", date3, 5, "Años", "", false, 10);
+		addNewDepreciableAsset("Computadores Marca Dell", 2000000, 600000, "Equipo de Computo", date4, 5, "Años", "", false, 10);
 		
-		
+		addNewNonDepreciableAsset("Terreno 2x4 metros", 5000000, "Terreno", date1, "", false, 5);
 		
 	}
 	
 	
 	
+	
+	public LocalDate getCutoffDate() {
+		return cutoffDate;
+	}
 	
 	public Hashtable<String, List<Asset>> getDerpeciableAssets() {
 		return depreciableAssetsActive;
@@ -113,8 +119,8 @@ public class PPE {
 	
 	
 	
-	private void createNewDepreciableAsset(String name, double value, String category, LocalDate registrationDate, double usefulLife, String usefulLifeMedition, String description) {
-		Asset depreciableAsset = new DepreciableAsset(name, value, category, registrationDate, description, usefulLife, usefulLifeMedition);
+	private void createNewDepreciableAsset(String name, double value, double residualValue, String category, LocalDate registrationDate, double usefulLife, String usefulLifeMedition, String description) {
+		Asset depreciableAsset = new DepreciableAsset(name, value, residualValue, category, registrationDate, description, usefulLife, usefulLifeMedition);
 		depreciableAssetsActive.get(category).add(depreciableAsset);
 	}
 	
@@ -126,13 +132,13 @@ public class PPE {
 	
 	
 	
-	public void addNewDepreciableAsset(String name, double value, String category, LocalDate registrationDate, double usefulLife, String usefulLifeMedition, String description, boolean otherCategory, int n) {
+	public void addNewDepreciableAsset(String name, double value, double residualValue, String category, LocalDate registrationDate, double usefulLife, String usefulLifeMedition, String description, boolean otherCategory, int n) {
 		if(otherCategory) {
 			createNewDepreciableCategory(category);
 		}
 		
 		for (int i = 0; i < n; i++) {
-			createNewDepreciableAsset(name, value, category, registrationDate, usefulLife, usefulLifeMedition, description);
+			createNewDepreciableAsset(name, value, residualValue, category, registrationDate, usefulLife, usefulLifeMedition, description);
 		}
 	}
 	

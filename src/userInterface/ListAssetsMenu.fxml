@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane prefHeight="30.0" prefWidth="1000.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+      <Pane prefHeight="30.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <Pane prefWidth="30.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefWidth="30.0" style="-fx-background-color: #EBECEE;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <VBox alignment="TOP_CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane>
+               <children>
+                  <JFXCheckBox fx:id="depreciableAsset_checkBox" layoutX="416.0" layoutY="5.0" onAction="#depreciableAssetClicked" text="Activo Depreciable" />
+                  <JFXCheckBox fx:id="nonDepreciableAsset_checkBox" layoutX="416.0" layoutY="25.0" onAction="#nonDepreciableAssetClicked" text="Activo No Depreciable" />
+               </children>
+            </Pane>
+            <TableView fx:id="assetData_tableView">
+              <columns>
+                <TableColumn fx:id="registerDate_tableColumn" prefWidth="107.60986709594727" text="Fecha de Registro" />
+                <TableColumn fx:id="name_tableColumn" prefWidth="203.26268005371094" text="Nombre" />
+                  <TableColumn fx:id="residualValue_tableColumn" prefWidth="111.52301025390625" text="Valor Residual" />
+                  <TableColumn fx:id="netWorth_tableColumn" prefWidth="102.2186279296875" text="Costo Neto" />
+                  <TableColumn fx:id="derpreciateRate_tableColumn" prefWidth="175.6571044921875" text="Tasa Anual de Depreciación" />
+                  <TableColumn fx:id="derpeciation_tableColumn" prefWidth="145.47802734375" text="Depreciación Acumulada" />
+                  <TableColumn fx:id="deregister_tableColumn" prefWidth="70.00006103515625" text="Activo" />
+              </columns>
+            </TableView>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="1.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

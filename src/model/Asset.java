@@ -35,8 +35,8 @@ public abstract class Asset {
 	}
 
 
-	public double getValue() {
-		return value;
+	public String getValue() {
+		return "" +value;
 	}
 
 

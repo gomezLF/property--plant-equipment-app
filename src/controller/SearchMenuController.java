@@ -1,7 +1,7 @@
 package controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -16,11 +16,19 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.Asset;
+import model.DepreciableAsset;
+import model.NonDepreciableAsset;
 import model.PPE;
 
 
@@ -95,13 +103,63 @@ public class SearchMenuController {
     
     @FXML
     void showDetailsClicked() {
+    	FXMLLoader loader;
+    	
+    	Stage stage = new Stage();
+    	stage.setResizable(false);
     	
     	if(runDeregisterMenuController) {
     		
-    		
+    		if(assetSelected.isActive()) {
+    			try {
+            		loader = new FXMLLoader(getClass().getResource("/userInterface/DeregisterMenu.fxml"));
+            		
+            		DeregisterMenuController deregisterMenuController = new DeregisterMenuController();
+            		deregisterMenuController.setPPE(this.PPE);
+            		deregisterMenuController.setDepreciableAsset(true);
+            		deregisterMenuController.setAsset(assetSelected);
+            		
+            		loader.setController(deregisterMenuController);
+                    Parent root = loader.load();
+                    
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+    		}else {
+    			Alert alert = new Alert(Alert.AlertType.WARNING, "Este activo ya ha sido retirado", ButtonType.CLOSE);
+    	        alert.setHeaderText(null);
+    	        alert.show();
+    		}
     		
     	}else {
-    		
+    		try {
+        		loader = new FXMLLoader(getClass().getResource("/userInterface/GeneralDetailsMenu.fxml"));
+        		
+        		GeneralDetailsMenuController generalDetailsMenuController = new GeneralDetailsMenuController();
+        		
+        		
+        		if(depreciableAsset_checkBox.isSelected()) {
+        			generalDetailsMenuController.setDerpeciableAsset((DepreciableAsset) assetSelected);
+        			generalDetailsMenuController.setDepreciateAsset(true);
+        		}else {
+        			generalDetailsMenuController.setDepreciateAsset(false);
+        			generalDetailsMenuController.setNonDepreciableAsset((NonDepreciableAsset) assetSelected);
+        		}
+        		
+        		
+        		
+        		loader.setController(generalDetailsMenuController);
+                Parent root = loader.load();
+                
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
     	}
     	
     	showDetails_button.setDisable(true);
@@ -244,4 +302,6 @@ public class SearchMenuController {
 		
 		return data;
 	}
+	
+	
 }
